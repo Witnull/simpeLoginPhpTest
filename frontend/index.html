@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Welcome</title>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -11,18 +13,20 @@
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams({ action: "check_session" })
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status !== "success") {
-                    window.location.href = "login.html";
-                }
-            });
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status !== "success") {
+                        window.location.href = "login.html";
+                    }
+                });
         });
     </script>
 </head>
+
 <body>
     <h1>Welcome to the Secure App!</h1>
-    <p>Only authenticated users can see this.</p>
+    <p>You can go to <a href="home.html">Home</a></p>
+    <p>Or</p>
     <button onclick="logout()">Logout</button>
     <script>
         function logout() {
@@ -31,10 +35,11 @@
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams({ action: "logout" })
             })
-            .then(() => {
-                window.location.href = "login.html";
-            });
+                .then(() => {
+                    window.location.href = "login.html";
+                });
         }
     </script>
 </body>
+
 </html>
