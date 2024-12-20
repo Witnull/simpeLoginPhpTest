@@ -1,15 +1,16 @@
 <?php
-header('Content-Type: application/json');
-
 $servername = "localhost";
 $username = "root";
-$password = ""; // Replace with your MySQL password
-$dbname = "lamp_users";
+$password = "";
+$dbname = "simplelogin";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Database connection failed']);
-    exit();
+    die("Connection failed: " . $conn->connect_error);
 }
+
+// Set charset to prevent character encoding attacks
+$conn->set_charset("utf8mb4");
 ?>
