@@ -30,13 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     } elseif ($action === 'register') {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-	$email = $input['email'];
+	$email = trim($_POST['email']);
 
         if (!empty($username) && !empty($password) && !empty($email)) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?,?, ?)");
-            $stmt->bind_param("ss", $username,$email, $hashed_password);
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $username, $email, $hashed_password);
             if ($stmt->execute()) {
                 echo json_encode(["status" => "success", "message" => "Registration successful."]);
             } else {
