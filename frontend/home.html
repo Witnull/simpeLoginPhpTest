@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Home</title>
+</head>
+<body>
+    <h2>Welcome, <span id="username"></span>!</h2>
+    <button id="logoutButton">Logout</button>
+    <script>
+        if (!localStorage.getItem('username')) {
+            window.location.href = 'index.html';
+        }
+        document.getElementById('username').textContent = localStorage.getItem('username');
+        document.getElementById('logoutButton').addEventListener('click', () => {
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
