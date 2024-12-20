@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "simplelogin";
+$dbname = "lamp_users";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
